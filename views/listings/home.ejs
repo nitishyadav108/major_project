@@ -1,0 +1,421 @@
+<% layout("/layouts/boilerplate.ejs") %>
+  <style>
+    .filter-wrapper {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .category-area {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
+    }
+
+    #filters {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .filter {
+      min-width: 70px;
+      flex-shrink: 0;
+      text-align: center;
+      margin-right: 2rem;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+
+    .filter p {
+      font-size: 0.8rem;
+    }
+
+    .filter:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .filter-arrow {
+      flex-shrink: 0;
+
+      width: 35px;
+      height: 35px;
+
+      border-radius: 50%;
+
+      border: 1px solid #ddd;
+
+      background: white;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+    }
+
+    .tax-switch {
+      flex-shrink: 0;
+
+      border: 1px solid grey;
+      border-radius: 1rem;
+
+      padding: 0.7rem 1rem;
+
+      height: 3rem;
+
+      display: flex;
+      align-items: center;
+
+      white-space: nowrap;
+    }
+
+    .tax-detail {
+      display: none;
+    }
+
+
+    /* Mobile hamburger */
+    /* .category-menu-btn {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      background: white;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    } */
+
+    .category-menu-btn {
+    display: none;
+    height: 40px;
+    padding: 0 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+
+    /* Mobile category menu */
+    .mobile-category-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .mobile-category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      border-bottom: 1px solid #ddd;
+
+      padding-bottom: 15px;
+    }
+
+    .mobile-category-header button {
+      border: none;
+      background: none;
+
+      font-size: 1.5rem;
+    }
+
+    .mobile-category-list {
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 20px;
+
+      margin-top: 25px;
+    }
+
+    .mobile-filter {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      padding: 15px;
+
+      border: 1px solid #ddd;
+      border-radius: 10px;
+
+      cursor: pointer;
+    }
+
+
+    /* 500px and below */
+    @media (max-width: 500px) {
+
+      .category-area {
+        display: none;
+      }
+    
+      #filters{
+        display: none;
+      }
+
+      .category-menu-btn {
+        display: flex;
+      }
+
+      .filter-wrapper {
+        justify-content: flex-end;
+      }
+
+      .tax-switch {
+        margin-left: auto;
+      }
+
+      .tax-switch .form-check-label {
+        font-size: 0.75rem;
+      }
+
+      .filter-arrow{
+        display: none;
+      }
+
+      .filter-wrapper{
+        flex: 1;
+        margin-top: 0.5rem;
+      }
+     
+      
+    }
+  </style>
+
+  <div class="filter-wrapper">
+    <!--  hamburger icon-->
+    <button class="category-menu-btn" id="categoryMenuBtn">
+      <i class="fa-solid fa-bars"></i>
+      <span>Categories</span>
+    </button>
+
+    <button class="filter-arrow" id="prevBtn">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <div id="filters">
+
+      <!-- YOUR EXISTING FILTERS -->
+
+      <div class="filter">
+        <div>
+          <i class="fa-solid fa-fire-flame-curved"></i>
+        </div>
+        <p>Trending</p>
+      </div>
+
+      <div class="filter">
+        <div>
+          <i class="fa-solid fa-bed"></i>
+        </div>
+        <p>Rooms</p>
+      </div>
+
+      <div class="filter">
+        <div>
+          <i class="fa-solid fa-tree-city"></i>
+        </div>
+        <p>Iconic cities</p>
+      </div>
+
+      <div class="filter">
+        <div>
+          <i class="fa-solid fa-mountain-sun"></i>
+        </div>
+        <p>Mountains</p>
+      </div>
+
+      <div class="filter">
+        <div>
+          <i class="fa-brands fa-fort-awesome"></i>
+        </div>
+        <p>Palace</p>
+      </div>
+
+      <div class="filter">
+        <div>
+          <i class="fa-solid fa-person-swimming"></i>
+        </div>
+        <p>Pools</p>
+      </div>
+
+      <div class="filter">
+        <div>
+          <i class="fa-solid fa-tractor"></i>
+        </div>
+        <p>Farmhouse</p>
+      </div>
+
+      <div class="filter">
+        <div>
+          <i class="fa-solid fa-snowman"></i>
+        </div>
+        <p>Snowy Areas</p>
+      </div>
+
+      <div class="filter">
+        <div>
+          <i class="fa-solid fa-wine-glass"></i>
+        </div>
+        <p>Vineyards</p>
+      </div>
+
+      <div class="filter">
+        <div>
+          <i class="fa-solid fa-campground"></i>
+        </div>
+        <p>Camps</p>
+      </div>
+
+    </div>
+
+    <button class="filter-arrow" id="nextBtn">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
+    <div class="tax-switch">
+
+      <div class="form-check-reverse form-switch">
+
+        <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+
+        <label class="form-check-label" for="switchCheckDefault">
+          Display total after taxes
+        </label>
+
+      </div>
+
+    </div>
+    
+  </div>
+
+  <div class="mobile-category-menu" id="mobileCategoryMenu">
+
+    <div class="mobile-category-header">
+      <h5>Categories</h5>
+
+      <button id="closeCategoryMenu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="mobile-category-list">
+
+      <div class="mobile-filter">
+        <i class="fa-solid fa-fire-flame-curved"></i>
+        <span>Trending</span>
+      </div>
+
+      <div class="mobile-filter">
+        <i class="fa-solid fa-bed"></i>
+        <span>Rooms</span>
+      </div>
+
+      <div class="mobile-filter">
+        <i class="fa-solid fa-tree-city"></i>
+        <span>Iconic cities</span>
+      </div>
+
+      <div class="mobile-filter">
+        <i class="fa-solid fa-mountain-sun"></i>
+        <span>Mountains</span>
+      </div>
+
+      <div class="mobile-filter">
+        <i class="fa-brands fa-fort-awesome"></i>
+        <span>Palace</span>
+      </div>
+
+      <div class="mobile-filter">
+        <i class="fa-solid fa-person-swimming"></i>
+        <span>Pools</span>
+      </div>
+
+      <div class="mobile-filter">
+        <i class="fa-solid fa-tractor"></i>
+        <span>Farmhouse</span>
+      </div>
+
+      <div class="mobile-filter">
+        <i class="fa-solid fa-snowman"></i>
+        <span>Snowy Areas</span>
+      </div>
+
+      <div class="mobile-filter">
+        <i class="fa-solid fa-wine-glass"></i>
+        <span>Vineyards</span>
+      </div>
+
+      <div class="mobile-filter">
+        <i class="fa-solid fa-campground"></i>
+        <span>Camps</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1 mt-2">
+    <% for(listing of listings){ %>
+      <a href="/listings/<%=listing._id %>" class="image-link">
+        <div class="card col listing-card">
+          <img src="<%=listing.image.url %>" class="card-img-top" alt="listing-image" style="height: 20rem;">
+          <div class="card-img-overlay"></div>
+          <div class="card-body">
+            <p class="card-text">
+              <b>
+                <%=listing.title %>
+              </b> <br>
+              &#8377 <%=listing.price.toLocaleString("en-IN") %>
+                <i class="tax-rate tax-detail"> + 18% GST</i>
+            </p>
+
+          </div>
+        </div>
+        <% } %>
+      </a>
+  </div>
+
+  <script>
+    const taxSwitch = document.getElementById("switchCheckDefault");
+
+    if (taxSwitch) {
+
+      taxSwitch.addEventListener("change", () => {
+
+        const taxRates = document.getElementsByClassName("tax-rate");
+
+        for (let taxRate of taxRates) {
+
+          taxRate.classList.toggle(
+            "tax-detail",
+            !taxSwitch.checked
+          );
+
+        }
+
+      });
+
+    }
+  </script>
